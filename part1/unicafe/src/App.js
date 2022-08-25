@@ -8,7 +8,15 @@ const Button = ({handleClick, text}) => {
     <button onClick={handleClick}>{text}</button>
   )
 }
-const StatisticLine = ({type, counter, extra}) => <p>{type} {counter} {extra} </p>
+const StatisticLine = ({type, counter, extra}) => {
+  return(
+    <tr>
+      <td>{type}</td>
+      <td>{counter}{extra}</td>
+    </tr>
+  )
+}
+
 
 const Statistics= (props) => {
   let good = props.good
@@ -18,20 +26,21 @@ const Statistics= (props) => {
   if(total === 0){
     return(
       <div>
-
         <p>No feedback given</p>
       </div>
     )
   }
   return(
-    <div>
-    <StatisticLine type="good"counter={good}/>
-    <StatisticLine type="neutral"counter={neutral}/>
-    <StatisticLine type="bad"counter={bad}/>
-    <StatisticLine type="all"counter={total}/>
-    <StatisticLine type ="average"counter = {(good-bad)/total}/>
-    <StatisticLine type ="positive" counter = {good/total * 100} extra="%"/>
-    </div>
+    <table>
+      <tbody>
+        <StatisticLine type="good"counter={good}/>
+        <StatisticLine type="neutral"counter={neutral}/>
+        <StatisticLine type="bad"counter={bad}/>
+        <StatisticLine type="all"counter={total}/>
+        <StatisticLine type ="average"counter = {Math.round(100*(good-bad)/total)/100}/>  
+        <StatisticLine type ="positive" counter = {Math.round(good/total * 10000)/100} extra="%"/>
+      </tbody>
+    </table>
   )
 }
 
