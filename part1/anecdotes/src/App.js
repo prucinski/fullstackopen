@@ -11,8 +11,10 @@ const Button = ({handleClick, text}) => {
 const Anecdote = ({anecdotes, points, selected}) => {
   return(
     <div>
-      <p>{anecdotes[selected]}</p>
-      <p>has {points[selected]} votes</p>
+      <p>
+        {anecdotes[selected]} <br></br>
+        has {points[selected]} votes
+      </p>
     </div>
   )
 }
