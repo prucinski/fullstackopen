@@ -8,13 +8,22 @@ const App = () => {
 
   const addPerson = (event) => {
     event.preventDefault()
-    const personObject = {
-      name: newName
+    const isEqualPerson = (person) => person.name === newName
+    if(persons.findIndex(isEqualPerson) === -1){
+      const personObject = {
+        name: newName
+      }
+      setPersons(persons.concat(personObject))
+      setNewName('')
+
     }
-    setPersons(persons.concat(personObject))
-    setNewName('')
-  }
-  const handleNameChange = (event) => setNewName(event.target.value)
+
+    else{
+      alert(`${newName} is already added to the phonebook`)
+    }
+
+    }
+    const handleNameChange = (event) => setNewName(event.target.value)
 
   return (
     <div>
